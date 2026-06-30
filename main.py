@@ -1,8 +1,7 @@
 #pensei em um cadastro onde podemos colocar dados pessoais, dados de residência e etc
 import dados_gerais
-import import_dicio
+from banco import usuario
+from banco import residencia
 
-
-import_dicio.passar_dicio()
-
-
+usuario
+residencia

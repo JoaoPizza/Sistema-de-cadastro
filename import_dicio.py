@@ -1,3 +1,6 @@
+#inutilizado com a nova versão
+
+
 from dados_gerais import dados_pessoais
 from dados_gerais import dados_residencia
 
