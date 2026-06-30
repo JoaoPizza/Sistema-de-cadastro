@@ -1,3 +1,6 @@
+#inutilizado pois houve a separação de responsabilidades
+
+
 def banco(texto):
     '''
     Aqui é a função para passar os dados para um arquivo a parte, assim salvando eles

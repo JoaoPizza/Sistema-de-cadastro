@@ -1,0 +1,38 @@
+[
+    {
+        "Pessoais": {
+            "Nome": "Joao",
+            "Idade": "20",
+            "Sexo": "M"
+        },
+        "Residencial": {
+            "UF": "PR",
+            "Cidade": "Curitiba",
+            "Pais": "Brasil"
+        },
+        "Banco": {
+            "Conta": 1234,
+            "Senha": 1234,
+            "Saldo": 2800
+        },
+        "Cripto": "vxuoHPsicf48"
+    },
+    {
+        "Pessoais": {
+            "Nome": "Josue",
+            "Idade": "20",
+            "Sexo": "M"
+        },
+        "Residencial": {
+            "UF": "PR",
+            "Cidade": "Curitiba",
+            "Pais": "Brasil"
+        },
+        "Banco": {
+            "Conta": 2345,
+            "Senha": 2345,
+            "Saldo": 2200
+        },
+        "Cripto": "odFcqjjmdE26"
+    }
+]

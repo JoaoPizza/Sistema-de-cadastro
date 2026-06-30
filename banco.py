@@ -1,76 +1,41 @@
-#inutilizado pois movi o salvamento para dentro dos dados gerais
+import json
+import sys
 
 
-from dados_gerais import Usuario
-from dados_gerais import Residencia
-
-usuario = Usuario()
-residencia = Residencia()
-
-
-def banco(texto):
+def bancoCript(texto):
     '''
     Aqui é a função para passar os dados para um arquivo a parte, assim salvando eles
     '''
-    with open('dados_pessoais.txt', 'a') as arquivo:
+    with open('dados_bancarios.txt', 'a') as arquivo:
         arquivo.write('''
 ''')
         arquivo.write(texto)
 
 
-banco(usuario.nome)
-banco(usuario.idade)
-banco(usuario.sexo)
-banco(residencia.uf)
-banco(residencia.cidade)
-banco(residencia.país)
+class Dados_bancarios:
+    def __init__(self, conta, senha, saldo=2000):
+        self.conta = conta
+        self.senha = senha
+        self.saldo = saldo
+
+    def sacar(self, valor):
+        self.saldo -= valor
+    
+    def depositar(self, valor):
+        self.saldo += valor
 
 
+def cadast_banc():
+    conta = int(input("Digite sua conta: "))
+    senha = int(input("Digite sua senha: "))
+    saldo = 2000
 
+    bancoCript(f'Conta: {conta} | Senha: {senha}')
 
-'''
-cadast = {
-    'dadpessoa': {
-        'nome': 0,
-        'idade': 0,
-        'sexo': 0
-    },
-    'local': {
-        'UF': 0,
-        'cidade': 0,
-        'país': 0
+    dadosbanc = {
+        "Conta":conta,
+        "Senha":senha,
+        "Saldo":saldo
     }
-}
 
-
-
-dados = dados_pessoais()
-
-nome = dados[0]
-idade = dados[1]
-sexo = dados[2]
-
-residencia = dados_residencia()
-
-uf = residencia[0]
-cidade = residencia[1]
-país = residencia[2]
-
-
-
-def passar_dicio():
-    cadast['dadpessoa']['nome'] = nome
-    banco('Nome: ',nome)
-    cadast['dadpessoa']['idade'] = idade
-    banco('Idade: ',idade)
-    cadast['dadpessoa']['sexo'] = sexo
-    banco('Sexo: ',sexo)
-    cadast['local']['UF'] = uf
-    banco('UF: ',uf)
-    cadast['local']['cidade'] = cidade
-    banco('Cidade: ',cidade)
-    cadast['local']['país'] = país
-    banco('País: ',país)
-
-
-passar_dicio()'''
+    return dadosbanc
