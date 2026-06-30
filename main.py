@@ -8,37 +8,38 @@ from dados_pessoais import cadast_usuar
 from dados_residen import cadast_resid
 import banco
 
-
+print("Olá! Seja bem vindo ao sistema.")
+print("---------------------------------")
 novo = str(input("Você é usuário novo ou possui conta? "))
+print("---------------------------------")
 
 if novo != "Novo":
-    user = int(input("Digite o número de sua conta: "))
-    userenc = 0
+    conta = banco.valid_conta()
 
-    based = open("dados.json", "r")
-    dados = json.load(based)
-    based.close()
+    oper = str.lower(input(f'''Escolha uma das opções abaixo: 
+                                    
+[1] Depositar
+[2] Sacar
+[3] Ver saldo
+[4] Transferir para outra conta
+[5] Sair
+                                    
+Digite o número desejado: '''))
 
-    # encontrada = any(banco["Banco"]["Conta"] == user for banco in dados)
+    if oper == "1":
+        banco.depositar(conta)
+    elif oper == "2":
+        banco.sacar(conta)
+    elif oper == "3":
+        banco.saldo(conta)
+    elif oper == "4":
+        banco.transf(conta)
+    elif oper == "5":
+        print("Obrigado por utilizar nosso sistema.")
+        sys.exit()
 
-    for banco in dados:
-        if banco["Banco"]["Conta"] == user:
-            userenc = banco
-            break
-
-    if userenc is not None:
-        print("Usuário encontrado!")
-
-        nome = userenc["Pessoais"]["Nome"]
-        senhacorr = userenc["Banco"]["Senha"]
-
-        senha = int(input("Digite sua senha: "))
-
-        if senha == senhacorr:
-            print(f"Bem vindo {nome}!")
-
-    sys.exit()
-
+else:
+    print("Conta não encontrada. Faça seu cadastro a seguir!")
 
 
 tamanho = 10
