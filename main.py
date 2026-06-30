@@ -1,7 +1,7 @@
 #pensei em um cadastro onde podemos colocar dados pessoais, dados de residência e etc
-import dados_gerais
-from banco import usuario
-from banco import residencia
+from dados_gerais import cadast_usuar
+from dados_gerais import cadast_resid
 
-usuario
-residencia
+
+cadast_usuar()
+cadast_resid()

@@ -1,30 +1,68 @@
+def banco(texto):
+    '''
+    Aqui é a função para passar os dados para um arquivo a parte, assim salvando eles
+    '''
+    with open('dados_pessoais.txt', 'a') as arquivo:
+        arquivo.write('''
+''')
+        arquivo.write(texto)
+
+
+
 class Usuario:
-    def __init__(self):
-        self.nome = str(input('Digite seu nome: '))
-        while self.nome.replace(' ', '').isalpha() == False:
-            print('Você digitou caracteres especiais e/ou números, digite somente letras!')
-            self.nome = str(input('Digite seu nome: '))
-        self.idade = input('Digite sua idade: ')
-        while self.idade.isdigit() == False:
-            print('Você não digitou um número, tente novamente!')
-            self.idade = (input('Digite sua idade: '))
-        self.sexo = str.upper(input('Digite seu sexo (M ou F): '))
-        while self.sexo not in ['M', 'F']:
-            print('O sexo digitado não é válido, digite M ou F!')
-            self.sexo = str(input('Digite seu sexo (M ou F): '))
+    def __init__(self, nome, idade, sexo):
+        self.nome = nome
+        banco(self.nome)
+        self.idade = idade
+        banco(self.idade)
+        self.sexo = sexo
+        banco(self.sexo)
 
 
 class Residencia:
-    def __init__(self):
-        self.uf = str(input('Digite sua UF: '))
-        if self.uf.replace(' ', '').isalpha() == False:
-            print('Você digitou caracteres especiais e/ou números, digite somente letras!')
-            self.uf = str(input('Digite sua UF: '))
-        self.cidade = str(input('Digite sua cidade: '))
-        if self.cidade.replace(' ', '').isalpha() == False:
-            print('Você digitou caracteres especiais e/ou números, digite somente letras!')
-            self.cidade = str(input('Digite sua cidade: '))
-        self.país = str(input('Digite seu país: '))
-        if self.país.replace(' ', '').isalpha() == False:
-            print('Você digitou caracteres especiais e/ou números, digite somente letras!')
-            self.país = str(input('Digite seu país: '))
+    def __init__(self, uf, cidade, pais):
+        self.uf = uf
+        banco(self.uf)
+        self.cidade = cidade
+        banco(self.cidade)
+        self.país = pais
+        banco(self.país)
+
+
+def cadast_usuar():
+    nome = str(input('Digite seu nome: '))
+    while nome.replace(' ', '').isalpha() == False:
+        print('Você digitou caracteres especiais e/ou números, digite somente letras!')
+        nome = str(input('Digite seu nome: '))
+    idade = input('Digite sua idade: ')
+    while idade.isdigit() == False:
+        print('Você não digitou um número, tente novamente!')
+        idade = (input('Digite sua idade: '))
+    sexo = str.upper(input('Digite seu sexo (M ou F): '))
+    while sexo not in ['M', 'F']:
+        print('O sexo digitado não é válido, digite M ou F!')
+        sexo = str(input('Digite seu sexo (M ou F): '))
+
+    return Usuario(nome, idade, sexo)
+
+
+def cadast_resid():
+    uf = str(input('Digite sua UF: '))
+    while uf.replace(' ', '').isalpha() == False:
+        print('Você digitou caracteres especiais e/ou números, digite somente letras!')
+        uf = str(input('Digite sua UF: '))
+    cidade = str(input('Digite sua cidade: '))
+    while cidade.replace(' ', '').isalpha() == False:
+        print('Você digitou caracteres especiais e/ou números, digite somente letras!')
+        cidade = str(input('Digite sua cidade: '))
+    país = str(input('Digite seu país: '))
+    while país.replace(' ', '').isalpha() == False:
+        print('Você digitou caracteres especiais e/ou números, digite somente letras!')
+        país = str(input('Digite seu país: '))
+    return Residencia(uf, cidade, país)
+
+
+if __name__ == '__main__':
+    Usuario()
+    print('-'*50)
+    Residencia()

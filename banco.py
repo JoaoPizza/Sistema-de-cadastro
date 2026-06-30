@@ -1,3 +1,6 @@
+#inutilizado pois movi o salvamento para dentro dos dados gerais
+
+
 from dados_gerais import Usuario
 from dados_gerais import Residencia
 
