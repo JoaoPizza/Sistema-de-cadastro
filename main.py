@@ -23,16 +23,30 @@ if novo != "novo":
 
     #Primeiro recebemos a conta e fazemos a abertura do JSON dentro da variável dados
 
-    user = int(input("Digite a sua conta: "))
+    user = str(input("Digite a sua conta: "))
+    
+    #Validamos se o input não é um espaço vazio ou uma letra    
+    while user == "" or user.isnumeric() == False:
+        print("Você digitou caracteres não aceitos nesse campo. Digite somente números!")
+        user = input("Digite a sua conta: ")
+
     conta = banco.valid_conta(user)
 
+    #Fazemos a validação dentro do JSON para verificar se a conta existe
+    while conta == False:
+        print("Conta não encontrada! Tente novamente.")
+        user = str(input("Digite a sua conta: "))
+        conta = banco.valid_conta(user)
+
+    print("---------------------------------")
+    
     based = open("dados.json", "r")
     dados = json.load(based)
     based.close()
 
-    for banco in dados:
-        if banco["Banco"]["Conta"] == user:
-            userenc = banco
+    for cbanco in dados:
+        if cbanco["Banco"]["Conta"] == user:
+            userenc = cbanco
             break
     
     #Apesar da validação da conta acontecer dentro da função, encontramos ela por fora para podermos manuseá-la
@@ -50,8 +64,19 @@ Digite o número desejado: '''))
     while oper != "5":
 
         if oper == "1":
-            valor = float(input("Digite o valor que deseja depositar: "))
-            conta.depositar(valor)
+
+            #Com o try estou primeiro tentando o input, caso ele retorne o erro ele dá o print e volta para o try isso impede qualquer caracter especial no campo
+
+            while True:
+                try:
+                    valor = float(input("Digite o valor que deseja depositar: "))
+                    break
+                except ValueError:
+                    print("Opção inválida! Por favor, digite apenas números.")
+
+            while conta.depositar(valor) == False:
+                print("Operação inválida. Tente novamente.")
+                valor = float(input("Digite o valor que deseja depositar: "))
             print(f"Você depositou R$ {valor} e agora seu saldo é R$ {conta.saldo}")
 
             #Aqui fazemos a atualização do valor em saldo do usuário por meio da variável obtida dentro do for que roda ao inicio do programa
@@ -60,11 +85,18 @@ Digite o número desejado: '''))
             salvar(dados)
 
         elif oper == "2":
-            valor = float(input("Digite o valor que deseja sacar: "))
+
+            while True:
+                try:
+                    valor = float(input("Digite o valor que deseja sacar: "))
+                    break
+                except ValueError:
+                    print("Opção inválida! Por favor, digite apenas números.")
+            
 
             #Antes de fazer a operação nós fazemos a validação do saldo em conta para ver se o valor desejado não é maior do que o em conta, isso ocorre dentro do método sacar e retorna False em caso de valores maiores que o saldo
             while conta.sacar(valor) == False:
-                print("O valor digitado é maior do que você possui de saldo. Tente novamente.")
+                print("Operação inválida. Tente novamente.")
                 valor = float(input("Digite o valor que deseja sacar: "))
             print(f"Você sacou R$ {valor} e agora seu saldo é R$ {conta.saldo}")
 
@@ -80,21 +112,21 @@ Digite o número desejado: '''))
             user2 = None
 
             #Aqui reutilizamos a abertura já feita para rodar e achar a conta destino
-            for banco in dados:
-                if banco["Banco"]["Conta"] == destino:
-                    user2 = banco
+            for cbanco in dados:
+                if cbanco["Banco"]["Conta"] == destino:
+                    user2 = cbanco
                     break
             
             #Como não posso usar um método para localizar a conta, utilizo a função Transf que somente procura a conta e me retorna um objeto com todos dados da conta encontrada, ou me retorna False caso não seja localizada
-            while banco.transf(destino) == False:
-                print("A conta digitada não foi localizada. Tente novamente.")
+            while banco.transf(destino) == False or destino == conta:
+                print("A conta digitada é inválida. Tente novamente.")
                 destino = int(input("Digite a conta que deseja transferir: "))
             
             valor = float(input("Digite o valor que deseja transferir: "))
 
             #Como se trata de uma transferência onde o saldo sai de uma conta e entra em outra, precisamos verificar se o saldo da conta remetente possui o saldo que deseja transferir, isso ocorre dentro do método de transferencia
             while conta.transferir(valor) == False:
-                print("O valor digitado é maior do que você possui de saldo. Tente novamente.")
+                print("Operação inválida. Tente novamente.")
                 valor = float(input("Digite o valor que deseja transferir: "))
             
             conta2.depositar(valor)
@@ -102,7 +134,7 @@ Digite o número desejado: '''))
             print(f"Você transferiu R$ {valor} e agora seu saldo é R$ {conta.saldo}")
 
             #Por fim caso todos argumentos estejam válidos fazemos a alteração dos valores nas contas e salvamos o JSON com as novas informações.
-            userenc["Banco"]["Saldo"] += valor
+            userenc["Banco"]["Saldo"] -= valor
             user2["Banco"]["Saldo"] += valor
             salvar(dados)
 

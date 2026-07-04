@@ -12,16 +12,31 @@ class Dados_bancarios:
 
         if valor > self.saldo:
             return False
+        
+        if valor > 1500:
+            return False
+        
+        elif valor <= 0:
+            return False
+        
         else:
             self.saldo -= valor
     
     def depositar(self, valor):
-        self.saldo += valor
+
+        if valor <= 0:
+            return False
+        
+        else:
+            self.saldo += valor
 
 
     def transferir(self, valor):
 
         if valor > self.saldo:
+            return False
+        
+        if valor <= 0:
             return False
 
         else:
@@ -48,19 +63,19 @@ def valid_conta(conta):
             break
     
     if userenc is not None:
-        print(f"Usuário encontrado!")
         
-        nome = userenc["Pessoais"]["Nome"]
         senhacorr = userenc["Banco"]["Senha"]
         saldo = userenc["Banco"]["Saldo"]
         conta = userenc["Banco"]["Conta"]
 
-        senha = int(input("Digite sua senha: "))
-        if senha == senhacorr:
-            print(f"Bem vindo {nome}!")
+        senha = str(input("Digite sua senha: "))
+
+        while senha != senhacorr or senha == "" or senha.isnumeric() == False:
+            print("Senha incorreta! Tente novamente.")
+            senha = str(input("Digite sua senha: "))
     
-    else:
-        return "erro"
+    elif userenc == None:
+        return False
 
     return Dados_bancarios(conta, senhacorr, saldo)
 

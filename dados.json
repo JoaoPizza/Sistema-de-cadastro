@@ -11,9 +11,9 @@
             "Pais": "Brasil"
         },
         "Banco": {
-            "Conta": 1234,
-            "Senha": 1234,
-            "Saldo": 2500.0
+            "Conta": "1234",
+            "Senha": "1234",
+            "Saldo": 3100.0
         },
         "Cripto": "vxuoHPsicf48"
     },
@@ -29,8 +29,8 @@
             "Pais": "Brasil"
         },
         "Banco": {
-            "Conta": 2345,
-            "Senha": 2345,
+            "Conta": "2345",
+            "Senha": "2345",
             "Saldo": 2200
         },
         "Cripto": "odFcqjjmdE26"
@@ -47,8 +47,8 @@
             "Pais": "Brasil"
         },
         "Banco": {
-            "Conta": 1111,
-            "Senha": 1111,
+            "Conta": "1111",
+            "Senha": "1111",
             "Saldo": 2000
         },
         "Cripto": "UPghiuSfyg24"
@@ -65,8 +65,8 @@
             "Pais": "Brasil"
         },
         "Banco": {
-            "Conta": 2222,
-            "Senha": 2222,
+            "Conta": "2222",
+            "Senha": "2222",
             "Saldo": 2000
         },
         "Cripto": "BYzFgUOlRu56"
