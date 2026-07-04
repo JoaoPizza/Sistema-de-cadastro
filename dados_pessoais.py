@@ -1,15 +1,3 @@
-import json
-def banco(texto):
-    '''
-    Aqui é a função para passar os dados para um arquivo a parte, assim salvando eles
-    '''
-    with open('dados_pessoais.txt', 'a') as arquivo:
-        arquivo.write('''
-''')
-        arquivo.write(texto)
-
-
-
 class Usuario:
     def __init__(self, nome, idade, sexo):
         self.nome = nome
@@ -32,15 +20,8 @@ def cadast_usuar():
         print('O sexo digitado não é válido, digite M ou F!')
         sexo = str(input('Digite seu sexo (M ou F): '))
 
-    banco(f'Nome: {nome} | Idade: {idade} | Sexo: {sexo}')
-
-    pessoais = {
-        "Nome":nome,
-        "Idade":idade,
-        "Sexo":sexo
-    }
-
-    return pessoais
+    
+    return Usuario(nome, idade, sexo)
 
 
 

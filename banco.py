@@ -11,7 +11,7 @@ class Dados_bancarios:
     def sacar(self, valor):
 
         if valor > self.saldo:
-            return "erro"
+            return False
         else:
             self.saldo -= valor
     
@@ -22,23 +22,17 @@ class Dados_bancarios:
     def transferir(self, valor):
 
         if valor > self.saldo:
-            return "erro"
+            return False
 
         else:
             self.saldo -= valor
 
 
 
-def cadast_banc(): #olhar depois 
+def cadast_banc():
     conta = int(input("Digite sua conta: "))
     senha = int(input("Digite sua senha: "))
     saldo = 2000
-
-    dadosbanc = {
-        "Conta":conta,
-        "Senha":senha,
-        "Saldo":saldo
-    }
 
     return Dados_bancarios(conta, senha)
 
@@ -88,7 +82,7 @@ def transf(conta):
         nvs = nvc["Banco"]["Saldo"]
 
     else:
-        return "erro"
+        return False
 
 
     return Dados_bancarios(conta, nvss, nvs)
